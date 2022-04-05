@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 RUN npm ci && npm run build
 
-FROM nginx:nginx-unprivileged
+FROM nginxinc/nginx-unprivileged
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/dist .
