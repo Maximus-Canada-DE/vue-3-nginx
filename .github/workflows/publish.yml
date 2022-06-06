@@ -17,7 +17,7 @@ jobs:
         image: vue-3-nginx
         tags: latest ${{ github.sha }}
         containerfiles: |
-          ./Containerfile
+          ./Dockerfile
 
     - name: Push To github
       id: push-to-github
