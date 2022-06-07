@@ -1,0 +1,20 @@
+name: echo
+on: 
+  workflow_dispatch:
+
+jobs:
+  echo-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo tag
+        # env:
+        #   CONTEXT: ${{ toJSON(github) }}
+        #   EVENT: ${{ github.event }}
+        #   RELEASE: ${{ github.event.release }}
+        #   TAG: ${{ github.event.release.tag_name }}
+        run: |
+          echo ""
+
+          echo ${{ github }}
+          echo ${{ github.event }}
+
