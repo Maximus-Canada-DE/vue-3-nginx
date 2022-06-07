@@ -1,5 +1,5 @@
-name: Build and Push Image
-on: [ repository_dispatch ]
+name: Build Image in Github Packages
+on: [workflow_dispatch ]
 
 jobs:
   publish:
