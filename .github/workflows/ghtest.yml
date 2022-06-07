@@ -15,6 +15,6 @@ jobs:
         run: |
           echo ""
 
-          echo ${{ github }}
-          echo ${{ toJSON(github.event) }}
+          echo $"{{ github }}"
+          echo $"{{ github.event }}"
 
