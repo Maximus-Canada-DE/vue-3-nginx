@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo tag
-        run: echo ${GITHUB_REF#refs/tags/}
+        run: |
+          echo "${GITHUB_REF#refs/tags/}"
+          echo "$GITHUB_CONTEXT"
   # build:
   #   name:  'Run Openshift Build'
   #   runs-on: ubuntu-latest
