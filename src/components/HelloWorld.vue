@@ -1,4 +1,5 @@
 <script setup>
+import { version } from '../../package.json';
 defineProps({
   msg: {
     type: String,
@@ -9,7 +10,7 @@ defineProps({
 
 <template>
   <div class="greetings">
-    <h1 class="green">v6</h1>
+    <h1 class="green">Version: {{version}}</h1>
     <h3>
       You’ve successfully created a project with
       <a target="_blank" href="https://vitejs.dev/">Vite</a> +

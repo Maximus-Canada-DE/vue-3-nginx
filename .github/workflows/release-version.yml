@@ -1,5 +1,9 @@
 name: Release Version
-on: [ workflow_dispatch ]
+on: 
+  workflow_dispatch:
+  push:
+    branches: main
+
 
 jobs:
   version-bump:
@@ -37,4 +41,3 @@ jobs:
         run: |
           oc version
           oc start-build vue-3 --follow
-          
