@@ -13,6 +13,5 @@ jobs:
         #   RELEASE: ${{ github.event.release }}
         #   TAG: ${{ github.event.release.tag_name }}
         run: |
-          echo "${{ toJSON(github) }}"
-          echo "${{ toJSON(github.event) }}"
+          echo "${{ toJSON(github.event.repository.created_at) }}"
 
