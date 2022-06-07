@@ -1,4 +1,4 @@
-name: Build and Push Image
+name: Bump NPM Version
 on: [ repository_dispatch ]
 
 jobs:
@@ -11,7 +11,7 @@ jobs:
         uses: 'actions/checkout@v2'
         with:
           ref: ${{ github.ref }}
-          
+
       - name: 'Automated Version Bump'  
         uses:  'phips28/gh-action-bump-version@master'
         env:
