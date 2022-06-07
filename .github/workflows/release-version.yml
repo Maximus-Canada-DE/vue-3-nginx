@@ -12,10 +12,11 @@ jobs:
     steps:
       - name: echo tag
         env:
-          TAG: ${GITHUB_REF#refs/tags/}
+          TAG: ${{ toJSON(github).event.release.tag_name }}
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
           echo "$TAG"
+          echo "$GITHUB_CONTEXT"
           echo "$GITHUB_CONTEXT"
   # build:
   #   name:  'Run Openshift Build'
