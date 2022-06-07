@@ -13,11 +13,9 @@ jobs:
       - name: echo tag
         env:
           TAG: ${{ toJSON(github).event.release.tag_name }}
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
           echo "$TAG"
-          echo "$GITHUB_CONTEXT"
-          echo "$GITHUB_CONTEXT"
+          echo is tag
   # build:
   #   name:  'Run Openshift Build'
   #   runs-on: ubuntu-latest
