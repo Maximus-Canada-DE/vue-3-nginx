@@ -11,23 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo tag
-        env:
-          CONTEXT: ${{ toJSON(github) }}
-          EVENT: ${{ github.event }}
-          RELEASE: ${{ github.event.release }}
-          TAG: ${{ github.event.release.tag_name }}
         run: |
-          echo "$TAG"
-          echo is tag
-          
-          echo "$EVENT"
-          echo is event
-          
-          echo "$RELEASE"
-          echo is release
-
-          echo "$CONTEXT"
-          echo is context
+          echo ${{ toJSON(github.event.release.tag_name) }}
+          echo ===============
+          echo ${{ github.event.release.tag_name }}
   # build:
   #   name:  'Run Openshift Build'
   #   runs-on: ubuntu-latest
