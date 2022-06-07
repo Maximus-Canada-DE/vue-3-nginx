@@ -13,9 +13,9 @@ jobs:
       - name: echo tag
         env:
           CONTEXT: ${{ toJSON(github) }}
-          EVENT: ${{ toJSON(github).event }}
-          RELEASE: ${{ toJSON(github).event.release }}
-          TAG: ${{ toJSON(github).event.release.tag_name }}
+          EVENT: ${{ github.event }}
+          RELEASE: ${{ github.event.release }}
+          TAG: ${{ github.event.release.tag_name }}
         run: |
           echo "$TAG"
           echo is tag
