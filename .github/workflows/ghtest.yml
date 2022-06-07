@@ -13,8 +13,6 @@ jobs:
         #   RELEASE: ${{ github.event.release }}
         #   TAG: ${{ github.event.release.tag_name }}
         run: |
-          echo ""
-
-          echo $"{{ github }}"
-          echo $"{{ github.event }}"
+          echo "${{ github }}"
+          echo "${{ github.event }}"
 
