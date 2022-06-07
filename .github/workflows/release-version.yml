@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo tag
+        env:
+          TAG: ${GITHUB_REF#refs/tags/}
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
-          echo "${GITHUB_REF#refs/tags/}"
+          echo "$TAG"
           echo "$GITHUB_CONTEXT"
   # build:
   #   name:  'Run Openshift Build'
