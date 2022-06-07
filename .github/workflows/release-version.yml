@@ -12,26 +12,25 @@ jobs:
     steps:
       - name: echo tag
         run: |
-          echo ${{ toJSON(github.event.release.tag_name) }}
-          echo ===============
           echo ${{ github.event.release.tag_name }}
-  # build:
-  #   name:  'Run Openshift Build'
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Authenticate and set context
-  #       uses: redhat-actions/oc-login@v1
-  #       env:
-  #         OPENSHIFT_USER: jlangy2
-  #         OPENSHIFT_NAMESPACE: jlangy2-dev
 
-  #       with:
-  #         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
-  #         openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-  #         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
+  build:
+    name:  'Run Openshift Build'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Authenticate and set context
+        uses: redhat-actions/oc-login@v1
+        env:
+          OPENSHIFT_USER: jlangy2
+          OPENSHIFT_NAMESPACE: jlangy2-dev
+
+        with:
+          openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
+          openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
+          namespace: ${{ env.OPENSHIFT_NAMESPACE }}
       
-  #     - name: build-image
-  #       run: |
-  #         oc version
-  #         oc start-build vue-3 --follow
-  #         oc tag vue-3:latest vue-3:
+      - name: build-image
+        run: |
+          oc version
+          oc start-build vue-3 --follow
+          oc tag vue-3:latest vue-3:${{ github.event.release.tag_name }}
