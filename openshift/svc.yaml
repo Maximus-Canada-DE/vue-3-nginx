@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: vue-3
+  namespace: jlangy2-dev
+  labels:
+    app: vue-3
+    app.kubernetes.io/component: vue-3
+    app.kubernetes.io/instance: vue-3
+spec:
+  ports:
+    - name: 80-tcp
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+  selector:
+    deployment: vue-3

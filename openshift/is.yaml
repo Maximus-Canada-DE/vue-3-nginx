@@ -1,0 +1,16 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: vue-3
+  labels:
+    app: vue-3
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+  - name: "latest"
+    from:
+      kind: DockerImage
+      name: ghcr.io/jlangy/vue-3-nginx/vue-3-nginx:latest
+    referencePolicy:
+      type: Source

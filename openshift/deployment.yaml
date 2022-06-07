@@ -1,0 +1,46 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations: 
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"vue-3:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"vue-3\")].image"}]'
+  name: vue-3
+  namespace: jlangy2-dev
+  labels:
+    app: vue-3
+    app.kubernetes.io/component: vue-3
+    app.kubernetes.io/instance: vue-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: vue-3
+  template:
+    metadata:
+      labels:
+        deployment: vue-3
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+    spec:
+      containers:
+        - name: vue-3
+          # initial image location will need to be created. Exists in github packages for this demo
+          image: ghcr.io/jlangy/vue-3-nginx/vue-3-nginx:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

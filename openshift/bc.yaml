@@ -1,30 +1,19 @@
-kind: "BuildConfig"
-apiVersion: "v1"
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
 metadata:
-  name: "ruby-sample-build" 
+  name: vue-3
+  labels:
+    app: vue-3
 spec:
-  runPolicy: "Serial" 
-  triggers: 
-    -
-      type: "GitHub"
-      github:
-        secret: "secret101"
-    - type: "Generic"
-      generic:
-        secret: "secret101"
-    -
-      type: "ImageChange"
-  source: 
+  source:
+    type: Git
     git:
-      uri: "https://github.com/openshift/ruby-hello-world"
-  strategy: 
-    sourceStrategy:
-      from:
-        kind: "ImageStreamTag"
-        name: "ruby-20-centos7:latest"
-  output: 
+      uri: https://github.com/jlangy/vue-3-nginx
+  strategy:
+    type: Docker                      
+    dockerStrategy:
+      dockerfilePath: Dockerfile    # Look for Dockerfile in: gitUri/contextDir/dockerfilePath
+  output:
     to:
-      kind: "ImageStreamTag"
-      name: "origin-ruby-sample:latest"
-  postCommit: 
-      script: "bundle exec rake test"
+      kind: ImageStreamTag
+      name: vue-3:latest
