@@ -34,4 +34,4 @@ jobs:
           oc version
           oc start-build vue-3 --follow
           oc tag jons-vue-3:latest jons-vue-3:${{ github.event.release.tag_name }}
-          oc set image deploy/vue-3 vue-3=${{REGISTRY_URL}}/jons-vue-3:${{ github.event.release.tag_name }}
+          oc set image deploy/vue-3 vue-3=${{secrets.REGISTRY_URL}}/jons-vue-3:${{ github.event.release.tag_name }}
