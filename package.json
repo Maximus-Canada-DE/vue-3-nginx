@@ -1,6 +1,6 @@
 {
   "name": "vue-3-nginx",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
