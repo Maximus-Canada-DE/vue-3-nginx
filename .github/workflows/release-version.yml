@@ -33,4 +33,4 @@ jobs:
         run: |
           oc version
           oc start-build vue-3 --follow
-          oc tag vue-3:latest vue-3:${{ github.event.release.tag_name }}
+          oc tag jons-vue-3:latest jons-vue-3:${{ github.event.release.tag_name }}

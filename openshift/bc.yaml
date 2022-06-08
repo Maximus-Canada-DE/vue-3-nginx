@@ -16,4 +16,4 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: vue-3:latest
+      name: jons-vue-3:latest
