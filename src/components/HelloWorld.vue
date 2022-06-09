@@ -15,7 +15,7 @@ defineProps({
       You’ve successfully created a project with
       <a target="_blank" href="https://vitejs.dev/">Vite</a> +
       <a target="_blank" href="https://vuejs.org/">Vue 3</a>.
-      ch-ch-ch-changes!
+      With our new fancy helm stuff
     </h3>
   </div>
 </template>
