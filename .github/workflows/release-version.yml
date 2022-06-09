@@ -6,23 +6,50 @@ on:
   # push:
   #   branches: main
 
+env: 
+  HELM_CHART_NAME: vue-3
+  OPENSHIFT_USER: jlangy2
+  OPENSHIFT_NAMESPACE: jlangy2-dev
+  IMAGE_NAME: vue-3-nginx
+  
 jobs:
-  echo-tag:
-    runs-on: ubuntu-latest
-    steps:
-      - name: echo tag
-        run: |
-          echo ${{ github.event.release.tag_name }}
+  # echo-tag:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: echo tag
+  #       run: |
+  #         echo ${{ github.event.release.tag_name }}
 
   build:
-    name:  'Run Openshift Build'
+      name: Build image
+      runs-on: ubuntu-20.04
+      steps:
+      - uses: actions/checkout@v2
+      - name: Build Image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          tags: latest ${{ github.event.release.tag_name }}
+          containerfiles: |
+            ./Dockerfile
+
+      - name: Push To github
+        id: push-to-github
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ steps.build-image.outputs.image }}
+          tags: ${{ steps.build-image.outputs.tags }}
+          registry: ghcr.io/${{ github.repository }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name:  Publish to openshift
     runs-on: ubuntu-latest
     steps:
       - name: Authenticate and set context
         uses: redhat-actions/oc-login@v1
-        env:
-          OPENSHIFT_USER: jlangy2
-          OPENSHIFT_NAMESPACE: jlangy2-dev
 
         with:
           openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
@@ -32,6 +59,4 @@ jobs:
       - name: build-image
         run: |
           oc version
-          oc start-build vue-3 --follow
-          oc tag jons-vue-3:latest jons-vue-3:${{ github.event.release.tag_name }}
-          oc set image deploy/vue-3 vue-3=${{secrets.REGISTRY_URL}}/jons-vue-3:${{ github.event.release.tag_name }}
+          helm version
