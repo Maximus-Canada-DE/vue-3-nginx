@@ -48,6 +48,7 @@ jobs:
     name:  Publish to openshift
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Authenticate and set context
         uses: redhat-actions/oc-login@v1
 
@@ -57,7 +58,7 @@ jobs:
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
       
       - name: build-image
-        working-directory: /helm/vue-nginx
+        working-directory: ./helm/vue-nginx
         run: |
           oc version
           helm upgrade ${{ env.HELM_CHART_NAME }} . --set image.tag=${{ github.event.release.tag_name }}
