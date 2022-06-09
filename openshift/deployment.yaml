@@ -1,8 +1,6 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  # annotations: 
-  #   image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"vue-3:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"vue-3\")].image"}]'
   name: vue-3
   namespace: jlangy2-dev
   labels:
