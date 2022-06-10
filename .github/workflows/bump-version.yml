@@ -2,6 +2,10 @@ name: Bump Version
 on: 
   workflow_dispatch:
   push:
+    paths:
+      - src
+      - Dockerfile
+      - nginx.conf
     branches: main
 
 

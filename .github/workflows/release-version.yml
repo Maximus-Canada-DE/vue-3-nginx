@@ -3,8 +3,6 @@ on:
   workflow_dispatch:
   release:
     types: [published]
-  # push:
-  #   branches: main
 
 env: 
   HELM_CHART_NAME: vue-3
@@ -13,13 +11,6 @@ env:
   IMAGE_NAME: vue-3-nginx
   
 jobs:
-  # echo-tag:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: echo tag
-  #       run: |
-  #         echo ${{ github.event.release.tag_name }}
-
   build:
       name: Build image
       runs-on: ubuntu-20.04
