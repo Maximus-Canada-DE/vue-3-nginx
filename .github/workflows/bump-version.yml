@@ -34,6 +34,9 @@ jobs:
 
     steps:
       - name: Run chart version bump
-        run: bash ci.sh ${{ needs.bump-node.version.outputs.next_version }}
+        uses: 'actions/checkout@v2'
+        run: |
+          ls
+          bash ci.sh ${{ needs.bump-node.version.outputs.next_version }}
       - uses: EndBug/add-and-commit@v9
 
