@@ -1,4 +1,4 @@
-name: Release Version
+name: Change Openshift Image Version
 on: 
   workflow_dispatch:
     inputs:
@@ -17,7 +17,6 @@ jobs:
   change-version:
     name:  Change openshift image version
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - uses: actions/checkout@v2
       - name: Authenticate and set context
