@@ -33,8 +33,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run chart version bump
+      - name: 'Checkout source code'
         uses: 'actions/checkout@v2'
+      - name: Run chart version bump
         run: |
           ls
           bash ci.sh ${{ needs.bump-node.version.outputs.next_version }}
