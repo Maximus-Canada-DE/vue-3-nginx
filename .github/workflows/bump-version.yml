@@ -28,10 +28,11 @@ jobs:
         with:
           tag-prefix: 'v'
   bump-chart-version:
+    needs: bump-node-version
+    name: 'Bump helm chart version'
     steps:
       - name: Run chart version bump
         uses: mittwald/bump-app-version-action@v1
-        needs: bump-node-version
         with:
           chartYaml: './helm/vue-nginx/Chart.yaml'
           version: ${{ needs.bump-node.version.outputs.next_version }}
