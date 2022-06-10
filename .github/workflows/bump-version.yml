@@ -30,6 +30,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag-prefix: 'v'
+        outputs:
+          next_version: '{{ version }}'
   bump-chart-version:
     needs: bump-node-version
     name: 'Bump helm chart version'
