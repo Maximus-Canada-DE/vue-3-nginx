@@ -1,21 +1,26 @@
-<script setup>
-import { version } from '../../package.json';
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
+<script setup lang="ts">
+import { useCounterStore } from '@/stores/counter'
+defineProps<{
+  msg: string
+}>()
+
+const counter = useCounterStore()
+const handleIncrement = () => counter.increment();
+const handleDecrement = () => counter.decrement();
+
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">Version: {{version}}</h1>
+    <h1 class="green">{{ msg }}</h1>
     <h3>
       You’ve successfully created a project with
       <a target="_blank" href="https://vitejs.dev/">Vite</a> +
-      <a target="_blank" href="https://vuejs.org/">Vue 3</a>.
+      <a target="_blank" href="https://vuejs.org/">Vue 3</a>. What's next?
     </h3>
+    <button @click="handleIncrement">Increment</button>
+    <button @click="handleDecrement">Decrement</button>
+    <h4>{{counter.count}}</h4>
   </div>
 </template>
 
