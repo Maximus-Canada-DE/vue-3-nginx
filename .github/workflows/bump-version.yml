@@ -30,6 +30,8 @@ jobs:
   bump-chart-version:
     needs: bump-node-version
     name: 'Bump helm chart version'
+    runs-on: ubuntu-latest
+
     steps:
       - name: Run chart version bump
         uses: mittwald/bump-app-version-action@v1
