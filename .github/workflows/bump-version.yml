@@ -34,7 +34,6 @@ jobs:
 
     steps:
       - name: Run chart version bump
-        uses: mittwald/bump-app-version-action@v1
-        with:
-          chartYaml: './helm/vue-nginx/Chart.yaml'
-          version: ${{ needs.bump-node.version.outputs.next_version }}
+        run: bash ci.sh ${{ needs.bump-node.version.outputs.next_version }}
+      - uses: EndBug/add-and-commit@v9
+
