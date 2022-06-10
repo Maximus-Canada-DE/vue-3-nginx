@@ -6,6 +6,7 @@ on:
       - src
       - Dockerfile
       - nginx.conf
+      - package.json
     branches: main
 
 
