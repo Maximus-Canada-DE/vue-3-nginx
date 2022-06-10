@@ -31,6 +31,7 @@ jobs:
     steps:
       - name: Run chart version bump
         uses: mittwald/bump-app-version-action@v1
+        needs: bump-node-version
         with:
           chartYaml: './helm/vue-nginx/Chart.yaml'
-          version: ${{ bump-node-version.outputs.next_version }}
+          version: ${{ needs.bump-node.version.outputs.next_version }}
