@@ -14,6 +14,8 @@ jobs:
   bump-node-version:
     name:  'Automated Version Bump'
     runs-on: ubuntu-latest
+    outputs:
+      next_version: ${{ steps.version-bump.outputs.next_version }}
 
     steps:
       - name: 'Checkout source code'
@@ -21,7 +23,8 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - name: 'Automated Version Bump'  
+      - name: 'Automated Version Bump' 
+        id: version-bump 
         uses:  'phips28/gh-action-bump-version@master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
