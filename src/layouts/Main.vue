@@ -3,7 +3,6 @@ import "@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css";
 import 'common-lib-vue/dist/common-lib-vue.css';
 import {
   Header,
-  PageContent,
   Footer,
 } from 'common-lib-vue';
 </script>
@@ -17,11 +16,12 @@ import {
           <RouterLink to="/">Home</RouterLink>
         </li>
         <li>
-          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/family-information/account-holder">Personal Info Form</RouterLink>
         </li>
       </ul>
-      <slot></slot>
+      <slot name="main"></slot>
     </div>
+    <slot name="footer"></slot>
     <Footer />
   </div>
 </template>
