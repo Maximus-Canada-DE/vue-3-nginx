@@ -1,43 +1,79 @@
 <script setup lang="ts">
-import "@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css";
+import '@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css';
 import 'common-lib-vue/dist/common-lib-vue.css';
-import {
-  PageStepper,
-  ContinueBar,
-} from 'common-lib-vue';
-import type { RouteRecordRaw } from 'vue-router'
+import { PageStepper, ContinueBar } from 'common-lib-vue';
 import MainLayout from '@/layouts/Main.vue';
+import type {Route} from '@/types/routes';
+import { onBeforeMount } from 'vue';
+import { computed } from '@vue/reactivity';
+import { useRoute, useRouter } from 'vue-router';
 
-defineProps<{
-  routes: RouteRecordRaw[],
-  handleContinue: Function,
-  handleSecondary?: Function,
-  hasSecondaryButton?: boolean,
-  secondaryButtonLabel?: string,
-  buttonLabel?: string,
-  isSticky?: boolean,
-  isSmoothScrollEnabled?: boolean,
-  minStepLabelWidth?: boolean,
-  isMobileStepperOpen?: boolean,
-}>()
+export interface Props {
+	routes: Route[];
+	handleContinue?: () => void;
+	handleSecondary?: () => void;
+	hasSecondaryButton?: boolean;
+	secondaryButtonLabel?: string;
+	buttonLabel?: string;
+	isSticky?: boolean;
+	isSmoothScrollEnabled?: boolean;
+	minStepLabelWidth?: number;
+	isMobileStepperOpen?: boolean;
+}
 
+const props = withDefaults(defineProps<Props>(), {
+	isSticky: true,
+	isMobileStepperOpen: false,
+	hasSecondaryButton: false,
+});
+
+let onContinue = props.handleContinue;
+const route = useRoute();
+const router = useRouter();
+
+if (!onContinue) {
+	onContinue = () => {
+		const currentRouteIndex = props.routes.findIndex(propRoute => propRoute.path === route.path)
+		const totalRoutes = props.routes.length;
+		if (currentRouteIndex < totalRoutes) {
+			const nextRouteIndex = currentRouteIndex + 1;
+			router.push(props.routes[nextRouteIndex].path)
+		}
+	}
+}
 </script>
 
 <template>
-  <MainLayout>
-    <template #main>
-      <PageStepper :currentPath=" $router.currentRoute.value.path " :routes=" routes "
-        :isSmoothScrollEnabled=" isSmoothScrollEnabled " :minStepLabelWidth=" minStepLabelWidth "
-        :isMobileStepperOpen=" isMobileStepperOpen " />
-      <slot></slot>
-    </template>
-    <template #footer>
-      <ContinueBar v-slot:footer @continue=" handleContinue " :buttonLabel=" buttonLabel " @secondary=" handleSecondary "
-        :isSticky=" isSticky " :hasSecondaryButton=" hasSecondaryButton " :secondaryButtonLabel=" secondaryButtonLabel ">
-      </ContinueBar>
-    </template>
-  </MainLayout>
-</template> 
+	<MainLayout>
+		<template
+			#main
+		>
+			<PageStepper
+				:currentPath=" $router.currentRoute.value.path "
+				:routes=" routes "
+				:isSmoothScrollEnabled=" isSmoothScrollEnabled "
+				:minStepLabelWidth=" minStepLabelWidth "
+				:isMobileStepperOpen=" isMobileStepperOpen "
+				@onClickLink="(path: string) => router.push(path)"
+			/>
+			<slot></slot>
+		</template>
+		<template
+			#footer
+		>
+			<ContinueBar
+				@continue=" onContinue "
+				:buttonLabel=" buttonLabel "
+				@secondary=" handleSecondary "
+				:isSticky=" isSticky "
+				:hasSecondaryButton=" hasSecondaryButton "
+				:secondaryButtonLabel=" secondaryButtonLabel "
+			>
+			</ContinueBar>
+		</template>
+	</MainLayout>
+</template>
 
 <style>
+
 </style>

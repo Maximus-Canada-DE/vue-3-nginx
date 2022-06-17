@@ -1,9 +1,9 @@
-import Home from '@/views/Home.vue'
-import type { Route } from '@/types/routes'
+import Home from '@/views/Home.vue';
+import type { Route } from '@/types/routes';
 
 export default [
   {
-    path: `/`,
+    path: '/',
     component: Home,
   },
 ] as Route[];

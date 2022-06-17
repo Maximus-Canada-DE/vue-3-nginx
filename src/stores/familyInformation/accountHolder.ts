@@ -1,10 +1,9 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const useAccountHolderStore = defineStore({
-  id: 'counter',
+  id: 'accountHolder',
   state: () => ({
-    firstname: "Kyle",
-    lastname: "Witherspoon",
-    birthdate: null,
+    firstname: 'Kyle',
+    lastname: 'Witherspoon',
   }),
-})
+});

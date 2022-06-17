@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
 
 export const useSpouseStore = defineStore({
-  id: 'counter',
+  id: 'spouse',
   state: () => ({
-    firstname: "Sarah",
-    lastname: "Witherspoon",
+    firstname: 'Sarah',
+    lastname: 'Witherspoon',
     birthdate: new Date(),
   }),
-})
+});

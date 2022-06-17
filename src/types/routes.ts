@@ -1,7 +1,8 @@
-import type { RouteRecordNormalized } from 'vue-router'
-import type {Component} from 'vue';
+import type { Component } from 'vue';
 
-export interface Route extends RouteRecordNormalized {
+export interface Route {
   title?: string;
-  component: never;
+  path: string;
+  name: string;
+  component: Component;
 }

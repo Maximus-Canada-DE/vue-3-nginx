@@ -1,12 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import personalInfoRoutes from './personalInfo';
+import { createRouter, createWebHistory } from 'vue-router';
+import personalInfoRoutes from './family-information';
 import baseRoutes from './base';
 
-const routes = [ ...personalInfoRoutes, ...baseRoutes ]
+const routes = [
+  ...personalInfoRoutes,
+  ...baseRoutes,
+];
 
-const router = createRouter( {
+const router = createRouter({
   history: createWebHistory(),
   routes,
-} )
+});
 
-export default router
+export default router;
