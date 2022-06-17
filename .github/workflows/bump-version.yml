@@ -30,19 +30,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag-prefix: 'v'
-        outputs:
-          next_version: '{{ version }}'
-  bump-chart-version:
-    needs: bump-node-version
-    name: 'Bump helm chart version'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 'Checkout source code'
-        uses: 'actions/checkout@v2'
-      - name: Run chart version bump
-        run: |
-          ls
-          bash ci.sh ${{ needs.bump-node-version.outputs.next_version }}
-      - uses: EndBug/add-and-commit@v9
-
