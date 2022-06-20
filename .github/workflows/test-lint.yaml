@@ -16,7 +16,7 @@ jobs:
         with:
           path: |
             **/node_modules
-            /home/runner/.cache/Cypress/10.1.0/Cypress/Cypress
+            /home/runner/.cache/Cypress/10.1.0/Cypress
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-npm-
@@ -35,5 +35,6 @@ jobs:
 
       - name: End-to-End Test
         run: |
+          npx cypress install
           npm run test:e2e:ci
 
