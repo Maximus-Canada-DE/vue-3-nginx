@@ -30,10 +30,8 @@ jobs:
       - name: Unit Test
         run: npm run test:unit
 
-      - name: Build
-        run: npm run build
-
-      - name: End-to-End Test
-        run: |
-          npm run test:e2e:ci
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
 
