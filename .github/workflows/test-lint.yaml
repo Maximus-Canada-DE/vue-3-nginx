@@ -21,13 +21,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit == 'false' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
-
       - name: Install dependencies
         run: npm i
 
-      - name: Build
+      - name: Lint
         run: npm run lint
+
+      - name: Unit Test
+        run: npm run test:unit
+
+      - name: End-to-End Test
+        run: npm run test:e2e:ci
