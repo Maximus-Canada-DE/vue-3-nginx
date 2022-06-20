@@ -31,8 +31,10 @@ jobs:
       - name: Unit Test
         run: npm run test:unit
 
+      - name: Build
+        run: npm run build
+
       - name: End-to-End Test
         run: |
-          npm i -g wait-on
-          npm run preview --port 4173 & wait-on http://127.0.0.1:4173
-          cypress run --e2e
+          npm run test:e2e:ci
+
