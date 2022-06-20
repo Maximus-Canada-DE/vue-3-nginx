@@ -1,6 +1,5 @@
 {
   "files": [],
-  "lib": ["es2017"],
   "references": [
     {
       "path": "./tsconfig.config.json"

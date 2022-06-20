@@ -13,13 +13,14 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "common-lib-vue": "3.0.1-alpha.1",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
-    "vue-router": "^4.0.15",
-    "common-lib-vue": "3.0.1-alpha.1"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
+    "npm-run-all": "^4.1.5",
     "@types/jsdom": "^16.2.14",
     "@types/node": "^16.11.36",
     "@vitejs/plugin-vue": "^2.3.3",
