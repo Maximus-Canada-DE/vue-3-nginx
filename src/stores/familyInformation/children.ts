@@ -11,11 +11,13 @@ export const useChildStore = defineStore( {
       this.children = this.children.filter(child => child.id !== id);
     },
     addChild() {
-      const ids = this.children.map(child => child.id);
+      const children: Child[] = this.children;
+      const ids = children.map(child => child.id);
       ids.sort();
       let newId;
       if (ids.length > 0) {
-        newId = ids[ids.length - 1] + 1;
+        const lastId = ids[ids.length - 1] as number;
+        newId = lastId + 1;
       } else {
         newId = 1;
       }
