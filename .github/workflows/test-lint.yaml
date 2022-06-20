@@ -1,7 +1,7 @@
 name: Lint and test
 on: [push]
 jobs:
-  lint-and-test:
+  install:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -12,3 +12,8 @@ jobs:
 
       - name: "Install Node Modules"
         run: npm ci
+  lint:
+    needs: install
+    steps:
+      - name: 'Lint files'
+        run: npm lint
