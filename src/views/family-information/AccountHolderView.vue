@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { Input } from 'common-lib-vue';
 import { useAccountHolderStore } from '@/stores/familyInformation/accountHolder';
-import FormLayout from '@/layouts/Form.vue';
-import personalInfoRoutes from '@/router/family-information';
+import FormLayout from '@/layouts/FormLayout.vue';
+import familyInfoRoutes from '@/router/family-information';
 const formData = useAccountHolderStore();
 </script>
 
 <template>
 	<FormLayout
-		:routes="personalInfoRoutes"
-		buttonLabel="hello!"
+		:routes="familyInfoRoutes"
 		:isSticky="true"
 		:isMobileStepperOpen="true"
 	>

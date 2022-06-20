@@ -3,13 +3,13 @@ import personalInfoRoutes from './family-information';
 import baseRoutes from './base';
 
 const routes = [
-  ...personalInfoRoutes,
-  ...baseRoutes,
+	...personalInfoRoutes,
+	...baseRoutes,
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+	history: createWebHistory(),
+	routes,
 });
 
 export default router;
