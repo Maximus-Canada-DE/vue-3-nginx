@@ -4,8 +4,8 @@
   "exclude": ["src/**/__tests__/*"],
   "module": "esnext",
   "declarations": false,
-  "lib": ["es2017"],
   "compilerOptions": {
+    "lib": ["es2017"],
     "composite": true,
     "baseUrl": ".",
     "paths": {
