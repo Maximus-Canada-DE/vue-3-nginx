@@ -7,11 +7,8 @@ import {capitalize} from '@/utils/stringFormatters';
 const accountHolderInformation = useAccountHolderStore();
 const spouseInformation = useSpouseStore();
 const childrenInformation = useChildStore();
-// @ts-ignore
 const accountHolderFields = Object.entries(accountHolderInformation.$state)
-// @ts-ignore
 const spouseFields = Object.entries(spouseInformation.$state)
-// @ts-ignore
 const children = childrenInformation.$state.children
 </script>
 
