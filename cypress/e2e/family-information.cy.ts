@@ -2,7 +2,7 @@
 
 describe('My First Test', () => {
 	it('visits the app root url', () => {
-		cy.visit('/family-information')
+		cy.visit('/')
 		cy.contains('h2', 'Home Page')
 	})
 })
