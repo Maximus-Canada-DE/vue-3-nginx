@@ -6,7 +6,7 @@ jobs:
   lint-test:  
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/test-lint-reusable
+      - uses: jlangy/vue-3-nginx/.github/workflows/test-lint-reusable.yaml@main
         with:
           installCommand: npm i
 
