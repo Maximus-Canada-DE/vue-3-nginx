@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Input, DateInput } from 'common-lib-vue';
 import { useSpouseStore } from '@/stores/familyInformation/spouse';
-import FormLayout from '@/layouts/Form.vue';
+import FormLayout from '@/layouts/FormLayout.vue';
 import personalInfoRoutes from '@/router/family-information';
 const formData = useSpouseStore();
 </script>
@@ -9,8 +9,6 @@ const formData = useSpouseStore();
 <template>
 	<FormLayout
 		:routes="personalInfoRoutes"
-		secondaryButtonLabel="Second"
-		:hasSecondaryButton="true"
 	>
 		<main>
 			<h2>

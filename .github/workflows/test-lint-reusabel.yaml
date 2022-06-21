@@ -1,0 +1,45 @@
+name: Lint and test
+on: 
+  workflow_call:
+    inputs:
+      installCommand:
+        type: string
+        default: npm i
+jobs:
+  lint-test:
+    name: Lint and Test Application
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+            /home/runner/.cache/Cypress/10.1.0/Cypress
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      - name: Install dependencies
+        run: ${{ inputs.installCommand }}
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit Test
+        run: npm run test:unit
+
+      - name: Build
+        run: npm run build
+
+      - name: End-to-End Test
+        run: |
+          npx cypress install
+          npm run test:e2e:ci
+

@@ -1,3 +1,3 @@
 /// <reference types="vite/client" />
-declare module "common-lib-vue"
+declare module 'common-lib-vue'
 

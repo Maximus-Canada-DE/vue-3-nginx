@@ -2,10 +2,8 @@
 import '@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css';
 import 'common-lib-vue/dist/common-lib-vue.css';
 import { PageStepper, ContinueBar } from 'common-lib-vue';
-import MainLayout from '@/layouts/Main.vue';
+import MainLayout from '@/layouts/MainLayout.vue';
 import type {Route} from '@/types/routes';
-import { onBeforeMount } from 'vue';
-import { computed } from '@vue/reactivity';
 import { useRoute, useRouter } from 'vue-router';
 
 export interface Props {
@@ -27,20 +25,22 @@ const props = withDefaults(defineProps<Props>(), {
 	hasSecondaryButton: false,
 });
 
-let onContinue = props.handleContinue;
 const route = useRoute();
 const router = useRouter();
 
-if (!onContinue) {
-	onContinue = () => {
-		const currentRouteIndex = props.routes.findIndex(propRoute => propRoute.path === route.path)
+const onContinue = () => {
+	if (props.handleContinue) {
+		props.handleContinue();
+		return;
+	} else {
+		const currentRouteIndex = props.routes.findIndex(propRoute => propRoute.path === route.path || propRoute?.alias?.includes(route.path))
 		const totalRoutes = props.routes.length;
 		if (currentRouteIndex < totalRoutes) {
 			const nextRouteIndex = currentRouteIndex + 1;
 			router.push(props.routes[nextRouteIndex].path)
 		}
 	}
-}
+};
 </script>
 
 <template>

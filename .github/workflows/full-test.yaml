@@ -1,0 +1,9 @@
+name: Lint and test
+on: 
+  pull_request:
+    branches: main
+jobs:
+  lint-test:  
+    uses: jlangy/vue-3-nginx/.github/workflows/test-lint-reusable.yaml@main
+    with: 
+      installCommand: npm ci

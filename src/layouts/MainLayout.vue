@@ -27,9 +27,9 @@ import { Header, Footer } from 'common-lib-vue';
 				</li>
 				<li>
 					<RouterLink
-						to="/family-information/account-holder"
+						to="/family-information"
 					>
-						Personal Info Form
+						Family Information Form
 					</RouterLink>
 				</li>
 			</ul>
