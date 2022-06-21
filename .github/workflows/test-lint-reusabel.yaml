@@ -1,5 +1,10 @@
 name: Lint and test
-on: [push]
+on: 
+  workflow_call:
+    inputs:
+      installCommand:
+        type: string
+        default: npm i
 jobs:
   lint-test:
     name: Lint and Test Application
@@ -22,7 +27,7 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Install dependencies
-        run: npm i
+        run: ${{ inputs.installCommand }}
 
       - name: Lint
         run: npm run lint
