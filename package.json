@@ -1,6 +1,6 @@
 {
   "name": "demo-forms",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
