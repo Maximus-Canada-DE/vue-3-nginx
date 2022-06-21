@@ -14,7 +14,7 @@ const formData = useAccountHolderStore();
 	>
 		<main>
 			<h2>
-				Account Holder Information
+				Account Holder Info
 			</h2>
 			<Input
 				label="Hello"
