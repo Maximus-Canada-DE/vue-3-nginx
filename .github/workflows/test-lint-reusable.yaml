@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: ${{ inputs.installCommand }}
 
+      - name: Check Types
+        run: npm run type-check
+
       - name: Lint
         run: npm run lint
 
