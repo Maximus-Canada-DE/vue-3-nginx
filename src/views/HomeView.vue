@@ -8,7 +8,7 @@ import Layout from '@/layouts/MainLayout.vue';
 			#main
 		>
 			<h2>
-		Home Page
+				Home Page
 			</h2>
 		</template>
 	</Layout>
