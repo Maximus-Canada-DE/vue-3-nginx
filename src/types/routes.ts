@@ -1,4 +1,6 @@
-import type { Component } from 'vue';
+import type {
+	Component 
+} from 'vue';
 
 export interface Route {
   title?: string;

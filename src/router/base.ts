@@ -1,5 +1,7 @@
 import Home from '@/views/HomeView.vue';
-import type { Route } from '@/types/routes';
+import type {
+	Route 
+} from '@/types/routes';
 
 export default [
 	{

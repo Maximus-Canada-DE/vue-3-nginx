@@ -1,45 +1,33 @@
 <script setup lang="ts">
 import '@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css';
 import 'common-lib-vue/dist/common-lib-vue.css';
-import { Header, Footer } from 'common-lib-vue';
+import {
+	Header, Footer 
+} from 'common-lib-vue';
 </script>
 
 <template>
-	<div
-		class="page-layout"
-	>
+	<div class="page-layout">
 		<Header
 			imagePath="/images/"
 			title="Hydra Forms"
 		/>
-		<div
-			class="container mb-3 page-content"
-		>
-			<ul
-				class="links"
-			>
+		<div class="container mb-3 page-content">
+			<ul class="links">
 				<li>
-					<RouterLink
-						to="/"
-					>
+					<RouterLink to="/">
 						Home
 					</RouterLink>
 				</li>
 				<li>
-					<RouterLink
-						to="/family-information"
-					>
+					<RouterLink to="/family-information">
 						Family Information Form
 					</RouterLink>
 				</li>
 			</ul>
-			<slot
-				name="main"
-			></slot>
+			<slot name="main"></slot>
 		</div>
-		<slot
-			name="footer"
-		></slot>
+		<slot name="footer"></slot>
 		<Footer />
 	</div>
 </template>

@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+	createRouter, createWebHistory 
+} from 'vue-router';
 import personalInfoRoutes from './family-information';
 import baseRoutes from './base';
 

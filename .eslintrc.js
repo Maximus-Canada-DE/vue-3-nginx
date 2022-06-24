@@ -57,12 +57,14 @@ module.exports = {
 		'brace-style': [
 			'error',
 			'1tbs',
-			{ allowSingleLine: true, },
+			{
+				allowSingleLine: true, 
+			},
 		],
 		'vue/first-attribute-linebreak': [
 			'error',
 			{
-				singleline: 'below',
+				singleline: 'beside',
 				multiline: 'below',
 			},
 		],
@@ -70,7 +72,7 @@ module.exports = {
 			'error',
 			{
 				'ignoreWhenEmpty': true,
-				'allowEmptyLines': false,
+				'allowEmptyLines': true,
 			},
 		],
 		'vue/singleline-html-element-content-newline': [
@@ -96,6 +98,18 @@ module.exports = {
 			'error',
 			'tab',
 		],
+		'object-property-newline': 'error',
+		'object-curly-newline': [
+			'error',
+			'always',
+		],
+		'@typescript-eslint/no-unused-vars': [
+			'warn',
+			{
+				'ignoreRestSiblings': true,
+			},
+		],
+		'@typescript-eslint/no-explicit-any': 'off',
 	},
 	overrides: [
 		{

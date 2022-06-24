@@ -4,9 +4,7 @@ import Layout from '@/layouts/MainLayout.vue';
 
 <template>
 	<Layout>
-		<template
-			#main
-		>
+		<template #main>
 			<h2>
 				Home Page
 			</h2>

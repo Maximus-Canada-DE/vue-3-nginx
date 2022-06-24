@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import '@bcgov/bootstrap-theme/dist/css/bootstrap-theme.min.css';
 import 'common-lib-vue/dist/common-lib-vue.css';
-import { PageStepper, ContinueBar } from 'common-lib-vue';
+import {
+	PageStepper, ContinueBar 
+} from 'common-lib-vue';
 import MainLayout from '@/layouts/MainLayout.vue';
-import type {Route} from '@/types/routes';
-import { useRoute, useRouter } from 'vue-router';
+import type {
+	Route
+} from '@/types/routes';
+import {
+	useRoute, useRouter 
+} from 'vue-router';
 
 export interface Props {
 	routes: Route[];
@@ -45,9 +51,7 @@ const onContinue = () => {
 
 <template>
 	<MainLayout>
-		<template
-			#main
-		>
+		<template #main>
 			<PageStepper
 				:currentPath=" $router.currentRoute.value.path "
 				:routes=" routes "
@@ -58,9 +62,7 @@ const onContinue = () => {
 			/>
 			<slot></slot>
 		</template>
-		<template
-			#footer
-		>
+		<template #footer>
 			<ContinueBar
 				@continue=" onContinue "
 				:buttonLabel=" buttonLabel "

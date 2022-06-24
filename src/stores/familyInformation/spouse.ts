@@ -1,10 +1,25 @@
-import { defineStore } from 'pinia';
+import {
+	defineStore 
+} from 'pinia';
+import {
+	required
+} from '@/validators/validators'
 
 export const useSpouseStore = defineStore({
 	id: 'spouse',
 	state: () => ({
-		firstname: 'Sarah',
-		lastname: 'Witherspoon',
-		birthdate: new Date(),
+		firstname: '',
+		lastname: '',
+		birthdate: null,
 	}),
+	getters: {
+		vuelidations: () => ({
+			firstname: {
+				required,
+			},
+			lastname: {
+				required,
+			},
+		}),
+	},
 });
