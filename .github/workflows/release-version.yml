@@ -55,4 +55,4 @@ jobs:
         working-directory: ./helm/vue-nginx
         run: |
           oc version
-          helm upgrade ${{ env.HELM_CHART_NAME }} . --set image.tag=${{ github.event.release.tag_name }}
+          helm upgrade --install ${{ env.HELM_CHART_NAME }} . --set image.tag=${{ github.event.release.tag_name }}
