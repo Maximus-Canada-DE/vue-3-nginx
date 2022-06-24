@@ -1,4 +1,4 @@
-name: Lint and test
+name: Clean install lint and test
 on: 
   pull_request:
     branches: main

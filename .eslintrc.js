@@ -16,19 +16,19 @@ module.exports = {
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
 		'no-import-assign': 'off',
 		'array-element-newline': [
-			'warn',
+			'error',
 			'always',
 		],
 		'array-bracket-newline': [
-			'warn',
+			'error',
 			'always',
 		],
 		quotes: [
-			'warn',
+			'error',
 			'single',
 		],
 		'comma-dangle': [
-			'warn',
+			'error',
 			{
 				arrays: 'always',
 				objects: 'always',
@@ -36,7 +36,7 @@ module.exports = {
 			},
 		],
 		'vue/html-indent': [
-			'warn',
+			'error',
 			'tab',
 			{
 				'attribute': 1,
@@ -48,40 +48,42 @@ module.exports = {
 			},
 		],
 		'vue/html-closing-bracket-newline': [
-			'warn',
+			'error',
 			{
 				'singleline': 'never',
 				'multiline': 'always',
 			},
 		],
 		'brace-style': [
-			'warn',
+			'error',
 			'1tbs',
-			{ allowSingleLine: true, },
+			{
+				allowSingleLine: true, 
+			},
 		],
 		'vue/first-attribute-linebreak': [
-			'warn',
+			'error',
 			{
-				singleline: 'below',
+				singleline: 'beside',
 				multiline: 'below',
 			},
 		],
 		'vue/multiline-html-element-content-newline': [
-			'warn',
+			'error',
 			{
 				'ignoreWhenEmpty': true,
-				'allowEmptyLines': false,
+				'allowEmptyLines': true,
 			},
 		],
 		'vue/singleline-html-element-content-newline': [
-			'warn',
+			'error',
 			{
 				'ignoreWhenNoAttributes': false,
 				'ignoreWhenEmpty': true,
 			},
 		],
 		'vue/max-attributes-per-line': [
-			'warn',
+			'error',
 			{
 				'singleline': {
 					'max': 1,
@@ -93,9 +95,21 @@ module.exports = {
 		],
 		'vue/require-default-prop': 'off',
 		indent: [
-			'warn',
+			'error',
 			'tab',
 		],
+		'object-property-newline': 'error',
+		'object-curly-newline': [
+			'error',
+			'always',
+		],
+		'@typescript-eslint/no-unused-vars': [
+			'warn',
+			{
+				'ignoreRestSiblings': true,
+			},
+		],
+		'@typescript-eslint/no-explicit-any': 'off',
 	},
 	overrides: [
 		{

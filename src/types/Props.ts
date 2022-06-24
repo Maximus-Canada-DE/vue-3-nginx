@@ -1,4 +1,6 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type {
+	RouteRecordRaw 
+} from 'vue-router';
 
 export interface Props {
 	routes: RouteRecordRaw[];

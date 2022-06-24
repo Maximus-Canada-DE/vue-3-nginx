@@ -1,6 +1,6 @@
 apiVersion: v2
 name: vue-nginx
-description: A Helm chart for Kubernetes
+description: A static vuejs app with nginx server
 
 # A chart can be either an 'application' or a 'library' chart.
 #

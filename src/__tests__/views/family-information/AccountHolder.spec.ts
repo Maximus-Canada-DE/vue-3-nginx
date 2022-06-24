@@ -1,7 +1,13 @@
-import { describe, it, vi } from 'vitest';
-import { mount } from '@vue/test-utils';
+import {
+	describe, it, vi 
+} from 'vitest';
+import {
+	mount 
+} from '@vue/test-utils';
 import AccountHolder from '@/views/family-information/AccountHolderView.vue';
-import { createTestingPinia } from '@pinia/testing';
+import {
+	createTestingPinia 
+} from '@pinia/testing';
 import router from '@/router';
 
 describe( 'Example unit test', () => {

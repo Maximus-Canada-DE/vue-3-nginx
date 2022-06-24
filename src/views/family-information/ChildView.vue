@@ -1,54 +1,46 @@
 <script setup lang="ts">
-import { Input } from 'common-lib-vue';
-import { useChildStore } from '@/stores/familyInformation/children';
+import {
+	useChildStore 
+} from '@/stores/familyInformation/children';
 import FormLayout from '@/layouts/FormLayout.vue';
 import familyInfoRoutes from '@/router/family-information';
+import ChildForm from '@/components/ChildForm.vue'
+import useVuelidate from '@vuelidate/core';
+import {
+	beforeContinue 
+} from '@/utils/formHelpers';
+
+const v$ = useVuelidate();
 const formData = useChildStore();
+
 </script>
 
 <template>
 	<FormLayout
 		:routes=" familyInfoRoutes "
-	>
-		<main>
+		:beforeContinue="() => beforeContinue(v$)"
+	>	
+		<div class="container">
 			<h2>
 				Child Information
 			</h2>
-			<section
-				class="child-section"
+			<ChildForm
 				v-for=" child  in  formData.children "
 				:key="child.id"
+				:id="child.id"
 			>
-				<Input
-					v-model="child.firstname"
-					label="First Name"
-				/>
-				<Input
-					v-model="child.lastname"
-					label="Last Name"
-				/>
-				<button
-					class="btn btn-danger"
-					@click="formData.removeChild(child.id)"
-				>
-					Delete this child
-				</button>
-			</section>
+			</ChildForm>
 			<button
 				@click=" formData.addChild "
 				class="btn btn-primary"
 			>
 				Add Child
 			</button>
-		</main>
+		</div>
 	</FormLayout>
 </template>
 
 <style scoped>
-main {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
 
 .child-section {
   display: flex;
@@ -61,10 +53,9 @@ main {
   width: 25%;
 }
 
-main > .btn-primary {
+.container > .btn-primary {
   margin-top: 1em;
   width: 25%;
-
 }
 
 </style>
