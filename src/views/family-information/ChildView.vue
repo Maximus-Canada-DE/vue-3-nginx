@@ -5,12 +5,21 @@ import {
 import FormLayout from '@/layouts/FormLayout.vue';
 import familyInfoRoutes from '@/router/family-information';
 import ChildForm from '@/components/ChildForm.vue'
+import useVuelidate from '@vuelidate/core';
+import {
+	beforeContinue 
+} from '@/utils/formHelpers';
 
+const v$ = useVuelidate();
 const formData = useChildStore();
+
 </script>
 
 <template>
-	<FormLayout :routes=" familyInfoRoutes ">	
+	<FormLayout
+		:routes=" familyInfoRoutes "
+		:beforeContinue="() => beforeContinue(v$)"
+	>	
 		<div class="container">
 			<h2>
 				Child Information
@@ -47,7 +56,6 @@ const formData = useChildStore();
 .container > .btn-primary {
   margin-top: 1em;
   width: 25%;
-
 }
 
 </style>

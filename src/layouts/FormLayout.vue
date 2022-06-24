@@ -16,6 +16,7 @@ export interface Props {
 	routes: Route[];
 	handleContinue?: () => void;
 	handleSecondary?: () => void;
+	beforeContinue?: () => Promise<boolean>;
 	hasSecondaryButton?: boolean;
 	secondaryButtonLabel?: string;
 	buttonLabel?: string;
@@ -34,7 +35,11 @@ const props = withDefaults(defineProps<Props>(), {
 const route = useRoute();
 const router = useRouter();
 
-const onContinue = () => {
+const onContinue = async () => {
+	if(props.beforeContinue) {
+		const canContinue = await props.beforeContinue();
+		if (!canContinue) return;
+	}
 	if (props.handleContinue) {
 		props.handleContinue();
 		return;

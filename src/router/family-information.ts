@@ -11,9 +11,6 @@ const baseUrl = '/family-information';
 export default [
 	{
 		path: `${baseUrl}/account-holder`,
-		alias: [
-			`${baseUrl}`,
-		],
 		name: 'Account Holder',
 		title: 'Account Holder Info',
 		component: AccountHolderView,

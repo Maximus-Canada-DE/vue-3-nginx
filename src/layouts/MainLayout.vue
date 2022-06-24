@@ -20,8 +20,13 @@ import {
 					</RouterLink>
 				</li>
 				<li>
-					<RouterLink to="/family-information">
+					<RouterLink to="/family-information/account-holder">
 						Family Information Form
+					</RouterLink>
+				</li>
+				<li>
+					<RouterLink to="/random">
+						Random Form
 					</RouterLink>
 				</li>
 			</ul>

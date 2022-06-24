@@ -1,59 +1,65 @@
-# demo-forms
+# About
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a template repository using the [common-lib-vue](https://www.npmjs.com/package/common-lib-vue) package to bootstrap a styled form. It includes:
+- A boilerplate vuejs application
+- A dockerfile to serve the web app with nginx 
+- A helm chart to run on a kubernetes cluster
 
-## Recommended IDE Setup
+# Contents
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- [About](#About)
+- [Front End](#front-end)
+  - [Overview](#overview)
+  - [Testing](#testing)
+  - [Linting](#linting)
+- [Backend](#back-end)
+- [DevOps](#devops)
 
-## Type Support for `.vue` Imports in TS
+# Front End
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Overview
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+This example uses vue 3 with the composition API. It also relies heavily on:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- [Pinia]() for a data store
+- [Vuelidate]() for form validations
 
-## Customize configuration
+There are two form flows, one small user information form (see [views/familyInformation](src/views/family-information/)) and a random filler form ([views/random](src/views/random/)). Each main flow has a corresponding set of stores and routes. See the given folders for examples.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Testing
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
+Unit tests for this application are run using [vitest](https://vitest.dev/) and [vue-test-utils](https://test-utils.vuejs.org/guide/). They can be run with:
+``` sh
 npm run test:unit
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+Integration testing uses [cypress](https://www.cypress.io/) and can be run with:
 
-```sh
-npm run build
-npm run test:e2e # or `npm run test:e2e:ci` for headless testing
+``` sh
+npm run test:e2e
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Default tests exist to demonstrate configuration, e.g adding a store and router mock.
 
-```sh
-npm run lint
-```
+## Linting
+
+Linting relies on [eslint](https://eslint.org/), and a number of rules are added into the [.eslintrc.js](.eslintrc.js) specific to vue sfc styling. There are recommended extensions in the [vscode](.vscode/extensions.json) folder that will help with using the tools in a vscode editor, as well as some useful workspace settings.
+
+# Back End
+
+There is a very basic [nginx configuration file](nginx.conf) that is used to build a single container with a server included. The configuration can be extended if needed, or a separate server could be used. See the [Dockerfile](Dockerfile) for container details.
+
+# DevOps
+
+## Continuous Integration
+
+A number of github actions are setup to run when integrating code. These include running unit tests, integration tests, linters and type checkers whenever new code is pushed. To run these actions locally, you can add pre-commit hooks with `husky install`. When merging to the main branch, the package version will be automatically bumped and a tag created to allow for easy releases. 
+
+## Continuos Deployment
+
+Once a set of changes merged to main are ready to release, create a new release from the github UI to deploy. These actions are setup to deploy to an openshift cluster, but the helm chart is generic enough to run in any kubernetes cluster. To use out of the box, you will need to add two secrets to your github actions:
+
+- OPENSHIFT_SERVER: the location of your server
+- OPENSHIFT_TOKEN: a token with the ability to create resources, preferably from a longer lived service account.
+
+In addition, the environment variables of the [release workflow](.github/workflows/release-version.yml) should be updated to refer to your namespace, and optionally rename images. Newly built images will be hosted with the repositories github packages, to be more easily compared with release notes and available publicly.
