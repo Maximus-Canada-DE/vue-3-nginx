@@ -8,20 +8,37 @@ import {
 import {
 	useChildStore 
 } from '@/stores/familyInformation/children';
-import MainLayout from '@/layouts/MainLayout.vue';
+import familyInfoRoutes from '@/router/family-information';
 import ReviewTable from '@/components/ReviewTable.vue';
+import FormLayout from '../../layouts/FormLayout.vue';
+import {
+	useRouter 
+} from 'vue-router';
 
 const accountHolderInformation = useAccountHolderStore();
 const spouseInformation = useSpouseStore();
 const childrenInformation = useChildStore();
+const router = useRouter();
 const accountHolderFields = Object.entries(accountHolderInformation.$state)
-const spouseFields = Object.entries(spouseInformation.$state)
-const children = childrenInformation.$state.children
+let spouseFields = Object.entries(spouseInformation.$state)
+if (spouseInformation.hasSpouse === 'N') {
+	spouseFields = spouseFields.filter(entry => entry[0] === 'hasSpouse')
+}
+const children = childrenInformation.$state.children;
+const handleContinue = () => {
+	accountHolderInformation.$reset();
+	spouseInformation.$reset();
+	childrenInformation.$reset();
+	router.push('/');
+}
 </script>
 
 <template>
-	<MainLayout>
-		<template #main>
+	<FormLayout 
+		:routes="familyInfoRoutes"
+		:handleContinue="handleContinue"
+	>
+		<main>
 			<h2>
 				Account Holder Information
 			</h2>
@@ -41,6 +58,6 @@ const children = childrenInformation.$state.children
 				:title="`Child #${index}`"
 				:rows="Object.entries(child)"
 			/>
-		</template>
-	</MainLayout>
+		</main>
+	</FormLayout>
 </template>

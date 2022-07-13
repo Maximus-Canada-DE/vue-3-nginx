@@ -8,6 +8,7 @@ This is a template repository using the [common-lib-vue](https://www.npmjs.com/p
 # Contents
 
 - [About](#About)
+- [Getting Started](#getting-started)
 - [Front End](#front-end)
   - [Overview](#overview)
   - [Testing](#testing)
@@ -15,6 +16,18 @@ This is a template repository using the [common-lib-vue](https://www.npmjs.com/p
 - [Backend](#back-end)
 - [DevOps](#devops)
 
+# Getting Started
+
+1. Click on `use this template` to create a fresh repository.
+1. Update the image name in the [values file](/helm/vue-nginx/values.yaml) to use your new repository name and the host name to a valid host if using the ingress.
+1. Update the `OPENSHIFT_NAMESPACE` variable in the [change version](/.github/workflows/change-oc-version.yml) and [release version](/.github/workflows/release-version.yml) workflows
+1. (optional) Update the repository name in the workflows files ([fast test](/.github/workflows/fast-test.yaml) and [full test](/.github/workflows/full-test.yaml)). This is optional as they refer to the working workflows in this template, but updating the reference will ensure changes to the reusable workflow in this repository updates the test workflows.
+
+Deploying to openshift
+
+1. Add the secrets `OPENSHIFT_TOKEN` and `OPENSHIFT_SERVER` to the repository.
+1. Push up changes
+1. If no tags exist yet, run the *Bump Version* workflow
 # Front End
 
 ## Overview
@@ -55,7 +68,7 @@ There is a very basic [nginx configuration file](nginx.conf) that is used to bui
 
 A number of github actions are setup to run when integrating code. These include running unit tests, integration tests, linters and type checkers whenever new code is pushed. To run these actions locally, you can add pre-commit hooks with `husky install`. When merging to the main branch, the package version will be automatically bumped and a tag created to allow for easy releases. 
 
-## Continuos Deployment
+## Continuous Deployment
 
 Once a set of changes merged to main are ready to release, create a new release from the github UI to deploy. These actions are setup to deploy to an openshift cluster, but the helm chart is generic enough to run in any kubernetes cluster. To use out of the box, you will need to add two secrets to your github actions:
 

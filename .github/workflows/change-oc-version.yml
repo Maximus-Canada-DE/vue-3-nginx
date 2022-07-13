@@ -11,7 +11,6 @@ env:
   HELM_CHART_NAME: vue-3
   OPENSHIFT_USER: jlangy2
   OPENSHIFT_NAMESPACE: jlangy2-dev
-  IMAGE_NAME: vue-3-nginx
   
 jobs:
   change-version:

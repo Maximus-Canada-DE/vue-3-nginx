@@ -51,7 +51,7 @@ jobs:
           openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
           namespace: ${{ env.OPENSHIFT_NAMESPACE }}
       
-      - name: build-image
+      - name: publish-image
         working-directory: ./helm/vue-nginx
         run: |
           oc version
