@@ -12,7 +12,8 @@ import type {
 const requiredMessage = 'This field is required!'
 
 export const isPastDate = {
-	$validator(value: Date) {
+	$validator(value?: Date) {
+		if (!value) return true;
 		return isPast(value);
 	},
 	$message: () => 'The date cannot be in the future!',

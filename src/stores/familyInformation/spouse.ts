@@ -32,7 +32,7 @@ export const useSpouseStore = defineStore({
 				required: requiredIf<string, SpouseState>((_value, state) => state.hasSpouse === 'Y'),
 			},
 			lastname: {
-				required,
+				required: requiredIf<string, SpouseState>((_value, state) => state.hasSpouse === 'Y'),
 			},
 		}),
 	},

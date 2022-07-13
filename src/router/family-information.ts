@@ -29,8 +29,8 @@ export default [
 	},
 	{
 		path: `${baseUrl}/review`,
-		name: 'Review',
-		title: 'Review',
+		name: 'Review Family Information',
+		title: 'Review Family Information',
 		component: Review,
 	},
 ] as Route[];
